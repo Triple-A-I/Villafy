@@ -1,0 +1,62 @@
+﻿@model IEnumerable<VillaWeb.Models.Dto.Villa.VillaDto>
+
+    <br />
+
+    <div class="container p-4 border">
+        <div class="row pb-2"> 
+            <div class="col">
+                <h1 class="text-primary">Villa List</h1>
+            </div>
+            <div class="col text-end pt-1">
+                <a class="btn btn-outline-primary" asp-action="CreateVilla">Create New Villa</a>
+            </div>
+        </div>
+
+    @{
+        if (Model.Count()==0)
+        {
+            <h1>No Villa Found</h1>
+
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Occupancy</th>
+                        <th>Details</th>
+                        <th>Sqft</th>
+                        <th>Amenity</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Occupancy</td>
+                            <td>@item.Details</td>
+                            <td>@item.Sqft</td>
+                            <td>@item.Amenity</td>
+                            <td>@((item.Rate).ToString("c"))</td>
+                            <td>
+                                <a class="btn btn-success" asp-controller="Villa" asp-action="UpdateVilla" asp-route-VillaId="@item.VillaId">Update</a>
+                                <a class="btn btn-danger" asp-controller="Villa" asp-action="DeleteVilla" asp-route-VillaId="@item.VillaId">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        }
+
+        
+        }
+       
+       
+        
+    </div>
