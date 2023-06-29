@@ -50,7 +50,7 @@ namespace VillaWeb.Services
 
 
                 HttpResponseMessage apiResponse = null;
-                if (string.IsNullOrEmpty(apiRequest.Token))
+                if (!string.IsNullOrEmpty(apiRequest.Token))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiRequest.Token);
 
